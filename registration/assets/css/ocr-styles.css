@@ -1,0 +1,309 @@
+/* OCR Modal Styling */
+.ocr-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ocr-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* OCR Modal Content - Glassmorphism */
+.ocr-modal-content {
+    background: rgba(255, 255, 255, 0.85);
+    width: 90%;
+    max-width: 500px;
+    border-radius: 24px;
+    padding: 40px 30px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.3) inset;
+    transform: scale(0.95) translateY(20px);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+[data-theme="dark"] .ocr-modal-content {
+    background: rgba(30, 41, 59, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+.ocr-modal.active .ocr-modal-content {
+    transform: scale(1) translateY(0);
+}
+
+.ocr-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0,0,0,0.05);
+    border: none;
+    font-size: 20px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    backdrop-filter: blur(4px);
+}
+
+[data-theme="dark"] .ocr-close-btn {
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.7);
+}
+
+.ocr-close-btn:hover {
+    color: var(--text-primary);
+    background: var(--bg-secondary);
+}
+
+.ocr-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    background: rgba(39, 174, 96, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+}
+
+.ocr-header-icon {
+    font-size: 30px;
+}
+
+.ocr-modal-header h2 {
+    font-size: 22px;
+    margin-bottom: 5px;
+    color: var(--text-primary);
+}
+
+.ocr-modal-header p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.ocr-drop-zone {
+    border: 2px dashed rgba(var(--text-primary-rgb), 0.2);
+    border-radius: 16px;
+    padding: 40px 20px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(255, 255, 255, 0.5); /* Light mode translucent */
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02) inset;
+}
+
+[data-theme="dark"] .ocr-drop-zone {
+    background: rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.ocr-drop-zone:hover, .ocr-drop-zone.drag-over {
+    border-color: var(--accent-emerald);
+    background: rgba(39, 174, 96, 0.08); /* Green tint on hover */
+    transform: translateY(-2px);
+}
+
+.ocr-file-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.ocr-initial-state .upload-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+    opacity: 0.7;
+}
+
+.ocr-drop-zone h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: var(--text-primary);
+}
+
+.ocr-drop-zone p {
+    font-size: 12px;
+    color: var(--text-tertiary);
+}
+
+
+/* Processing State */
+.ocr-processing-state {
+    width: 100%;
+}
+
+.scanning-animation {
+    width: 120px;
+    height: 80px;
+    margin: 0 auto 15px;
+    position: relative;
+    background: #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.scan-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5;
+}
+
+.scan-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--accent-emerald);
+    box-shadow: 0 0 10px var(--accent-emerald);
+    animation: scan 1.5s infinite linear;
+    z-index: 2;
+}
+
+@keyframes scan {
+    0% { top: 0; }
+    100% { top: 100%; }
+}
+
+/* States */
+.hidden {
+    display: none !important;
+}
+
+.ocr-error-state .error-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.ocr-success-state .success-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.ocr-modal-footer {
+    margin-top: 20px;
+}
+
+.btn-text {
+    background: none;
+    border: none;
+    color: var(--accent-emerald);
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none; /* Removed underline for cleaner look */
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.btn-text:hover {
+    background: rgba(39, 174, 96, 0.1);
+    text-decoration: none;
+}
+
+/* Scan ID Step Button */
+.scan-id-action {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    border: 1px dashed var(--border-color);
+}
+
+.btn-scan-id {
+    color: var(--bg-card);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Dark mode adjustment for button */
+[data-theme="dark"] .btn-scan-id {
+    background: #fff;
+    color: #000;
+}
+
+.btn-scan-id:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.scan-helper-text {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--text-tertiary);
+}
+[data-theme="high-contrast"] .ocr-modal-content {
+    background: #000;
+    border: 2px solid #fff;
+}
+
+[data-theme="high-contrast"] .ocr-drop-zone {
+    border: 2px dashed #fff;
+    background: #000;
+}
+
+[data-theme="high-contrast"] .ocr-drop-zone h3,
+[data-theme="high-contrast"] .ocr-drop-zone p {
+    color: #fff;
+}
+
+[data-theme="high-contrast"] .btn-scan-id {
+    background: #fff;
+    color: #000;
+    border: 2px solid #fff;
+}
+
+[data-theme="high-contrast"] .ocr-close-btn {
+    color: #fff;
+    border: 1px solid #fff;
+}
+
+[data-theme="high-contrast"] .ocr-icon-wrapper {
+    background: transparent;
+    border: 1px solid #fff; 
+}
+

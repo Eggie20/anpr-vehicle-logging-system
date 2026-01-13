@@ -1,235 +1,258 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="CampusSecure - Advanced ANPR Vehicle Logging System for Campus Security">
-  <title>CampusSecure | Campus Security ANPR System</title>
-  
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- CSS -->
-  <link rel="stylesheet" href="assets/css/shared/reset.css">
-  <link rel="stylesheet" href="assets/css/shared/tokens.css">
-  <link rel="stylesheet" href="assets/css/shared/layout.flex.css">
-  <link rel="stylesheet" href="assets/css/shared/components.base.css">
-  <link rel="stylesheet" href="assets/css/shared/themes.css">
-  <link rel="stylesheet" href="assets/animations/shared.animations.css">
-  
-  <!-- Landing Page Styles -->
-  <link rel="stylesheet" href="assets/css/landing.css">
+  <title>CSUCC Portal | Caraga State University</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* CSUCC Deep Green Premium Theme */
+    
+    .visual-panel {
+      position: relative;
+      background-color: #064e3b; /* Deep Emerald Green */
+      color: white;
+      overflow: hidden;
+      /* Defer layout to styles.css for responsiveness */
+    }
+
+    .visual-panel::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      /* Subtler Texture instead of big logo background */
+      background-image: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: 24px 24px;
+      opacity: 0.3;
+    }
+
+    .visual-content {
+      position: relative;
+      z-index: 10;
+    }
+    
+    /* Logo Highlight - Stronger Glow */
+    .logo-container {
+      background: transparent;
+      padding: 0;
+      margin-bottom: 2rem;
+      box-shadow: none;
+      border: none;
+    }
+    
+    .csucc-logo-main {
+      width: 160px;
+      height: auto;
+      display: block;
+      /* Intense white drop-shadow for maximum visibility without a box */
+      filter: drop-shadow(0 0 15px rgba(255, 255, 255, 1)) drop-shadow(0 0 5px rgba(255,255,255,1));
+      transition: filter 0.3s ease, transform 0.3s ease;
+    }
+
+    .csucc-logo-main:hover {
+        transform: scale(1.05);
+        filter: drop-shadow(0 0 20px rgba(255, 255, 255, 1));
+    }
+    
+    .uni-name {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .campus-name {
+      font-size: 2.75rem;
+      color: #fbbf24;
+      font-weight: 800;
+      margin-bottom: 2rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      line-height: 1.1;
+      text-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    }
+    
+    .desc-text {
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.95);
+      max-width: 500px;
+      line-height: 1.6;
+      border-left: 4px solid #fbbf24;
+      padding-left: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .info-section {
+       margin-top: 2.5rem;
+       font-size: 1rem;
+       color: rgba(255,255,255,0.9);
+       max-width: 500px;
+    }
+    
+    .info-section ul {
+        list-style-type: none;
+        padding-left: 0;
+        margin-top: 1rem;
+    }
+    
+    .info-section li {
+        margin-bottom: 0.85rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .info-section li svg {
+        color: #fbbf24;
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+    }
+    
+    /* Button Override */
+    .btn-submit {
+      background: #064e3b;
+    }
+    .btn-submit:hover {
+      background: #047857;
+    }
+
+    /* Input Focus Color */
+    .input-field input:focus,
+    .input-field input:valid,
+    .input-field select:focus,
+    .input-field select:valid {
+      border-color: #059669;
+    }
+    
+    .input-field input:focus ~ label,
+    .input-field input:valid ~ label,
+    .input-field select:focus ~ label,
+    .input-field select:valid ~ label {
+      color: #059669;
+    }
+  </style>
 </head>
-<body>
-  <div class="landing-page">
-    <!-- Header -->
-    <header class="landing-header">
-      <div class="landing-logo">
-        <div class="landing-logo-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
-        </div>
-        <span class="landing-logo-text">CampusSecure</span>
-      </div>
-      
-      <nav class="landing-nav">
-        <button class="theme-toggle" aria-label="Toggle theme">
-          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="5"/>
-            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-          </svg>
-          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
-          </svg>
-        </button>
-      </nav>
-    </header>
-    
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero-badge">
-        <span class="live-dot"></span>
-        ANPR System Active
-      </div>
-      <h1 class="hero-title">
-        Smart Campus Security with <span>ANPR Technology</span>
-      </h1>
-      <p class="hero-subtitle">
-        Automated license plate recognition for seamless vehicle access control. 
-        Monitor, manage, and secure your campus with real-time detection.
-      </p>
-      <div class="hero-actions">
-        <a href="assets/pages/admin/dashboard.html" class="btn btn-primary">
-          Admin Portal
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="m9 18 6-6-6-6"/>
-          </svg>
-        </a>
-        <a href="assets/pages/security.html" class="btn btn-outline">
-          Security Dashboard
-        </a>
-      </div>
-    </section>
-    
-    <!-- Portal Cards -->
-    <section class="portals">
-      <h2 class="portals-title">Access Your Portal</h2>
-      <p class="portals-subtitle">Select your role to access the appropriate dashboard</p>
-      
-      <div class="portals-grid">
-        <a href="assets/pages/student/dashboard.html" class="portal-card" style="--portal-color: var(--color-info); --portal-bg: rgba(59, 130, 246, 0.15);">
-          <div class="portal-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-              <path d="M6 12v5c3 3 9 3 12 0v-5"/>
-            </svg>
-          </div>
-          <h3 class="portal-title">Student</h3>
-          <p class="portal-description">View your vehicle registrations, entry logs, and parking permits.</p>
-          <span class="portal-link">
-            Access Portal
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="m9 18 6-6-6-6"/>
-            </svg>
-          </span>
-        </a>
-        
-        <a href="assets/pages/faculty/dashboard.html" class="portal-card" style="--portal-color: var(--color-secondary); --portal-bg: rgba(168, 85, 247, 0.15);">
-          <div class="portal-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
-            </svg>
-          </div>
-          <h3 class="portal-title">Faculty</h3>
-          <p class="portal-description">Manage your reserved parking spot and view access history.</p>
-          <span class="portal-link">
-            Access Portal
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="m9 18 6-6-6-6"/>
-            </svg>
-          </span>
-        </a>
-        
-        <a href="assets/pages/admin/dashboard.html" class="portal-card" style="--portal-color: var(--color-error); --portal-bg: rgba(239, 68, 68, 0.15);">
-          <div class="portal-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="3"/>
-              <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/>
-            </svg>
-          </div>
-          <h3 class="portal-title">Admin</h3>
-          <p class="portal-description">Full system management, user control, and analytics.</p>
-          <span class="portal-link">
-            Access Portal
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="m9 18 6-6-6-6"/>
-            </svg>
-          </span>
-        </a>
-        
-        <a href="assets/pages/security.html" class="portal-card" style="--portal-color: var(--color-success); --portal-bg: rgba(34, 197, 94, 0.15);">
-          <div class="portal-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
-          </div>
-          <h3 class="portal-title">Security</h3>
-          <p class="portal-description">Live CCTV monitoring, ANPR detection, and gate control.</p>
-          <span class="portal-link">
-            Access Portal
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="m9 18 6-6-6-6"/>
-            </svg>
-          </span>
-        </a>
-      </div>
-    </section>
-    
-    <!-- Features -->
-    <section class="features">
-      <div class="features-grid">
-        <div class="feature-item">
-          <div class="feature-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="2" y="6" width="20" height="12" rx="2"/>
-              <path d="M6 12h.01M10 12h.01M14 12h.01M18 12h.01"/>
-            </svg>
-          </div>
-          <h3 class="feature-title">Real-time ANPR</h3>
-          <p class="feature-description">Automatic license plate recognition with instant verification.</p>
-        </div>
-        
-        <div class="feature-item">
-          <div class="feature-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/>
-              <circle cx="12" cy="13" r="4"/>
-            </svg>
-          </div>
-          <h3 class="feature-title">CCTV Monitoring</h3>
-          <p class="feature-description">Live camera feeds with multi-grid layout options.</p>
-        </div>
-        
-        <div class="feature-item">
-          <div class="feature-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M18 20V10M12 20V4M6 20v-6"/>
-            </svg>
-          </div>
-          <h3 class="feature-title">Analytics Dashboard</h3>
-          <p class="feature-description">Comprehensive reports and traffic analytics.</p>
-        </div>
-        
-        <div class="feature-item">
-          <div class="feature-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-              <path d="M13.73 21a2 2 0 01-3.46 0"/>
-            </svg>
-          </div>
-          <h3 class="feature-title">Instant Alerts</h3>
-          <p class="feature-description">Real-time notifications for unauthorized access.</p>
-        </div>
-        
-        <div class="feature-item">
-          <div class="feature-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="3" y="3" width="18" height="18" rx="2"/>
-              <path d="M3 9h18M9 21V9"/>
-            </svg>
-          </div>
-          <h3 class="feature-title">Gate Control</h3>
-          <p class="feature-description">Automated gate management with manual override.</p>
-        </div>
-        
-        <div class="feature-item">
-          <div class="feature-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
-            </svg>
-          </div>
-          <h3 class="feature-title">Role-Based Access</h3>
-          <p class="feature-description">Secure portals for students, faculty, and staff.</p>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Footer -->
-    <footer class="landing-footer">
-      <p class="landing-footer-text">
-        © 2026 <a href="#">CampusSecure</a> - Advanced ANPR Vehicle Logging System. All rights reserved.
-      </p>
-    </footer>
-  </div>
+<body class="role-student">
   
-  <!-- Scripts -->
-  <script src="assets/js/shared/theme.toggle.js"></script>
+  <div class="login-wrapper">
+    <!-- Visual Panel -->
+    <div class="visual-panel">
+      <div class="visual-content">
+        
+        <!-- Logo with Highlight Container -->
+        <div class="logo-container">
+            <img src="assets/images/logo.png" alt="CSUCC Logo" class="csucc-logo-main">
+        </div>
+        
+        <h2 class="uni-name">Caraga State University</h2>
+        <h1 class="campus-name">Cabadbaran City<br>Campus</h1>
+        
+        <div class="desc-text">
+          <strong>Welcome to the CSUCC ANPR Portal</strong>
+          <br>
+          A secure automated system for vehicle identification and campus access management.
+        </div>
+        
+        <div class="info-section">
+            <p>Portal Features:</p>
+            <ul>
+                <li>
+                    <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    <span>Vehicle Registration & Management</span>
+                </li>
+                 <li>
+                    <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    <span>Real-time Entry/Exit Logs</span>
+                </li>
+                 <li>
+                    <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>
+                    <span>Faculty & Student Profile Access</span>
+                </li>
+            </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Form Panel -->
+    <div class="form-panel">
+      <div class="header-controls">
+        <button id="theme-toggle" class="theme-btn" aria-label="Toggle Dark Mode">
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+
+      <div class="form-container">
+        <div class="welcome-text">
+          <h2>Portal Login</h2>
+          <p>Please simple sign in to continue.</p>
+        </div>
+
+        <form id="login-form">
+          <!-- Role Selector -->
+          <div class="input-field">
+             <select id="role" name="role" required>
+               <option value="" disabled selected></option>
+               <option value="student">Student</option>
+               <option value="faculty">Faculty Member</option>
+             </select>
+             <label>Select Your Profile</label>
+          </div>
+
+          <!-- Email / ID Input -->
+          <div class="input-field">
+            <input type="text" id="email" required spellcheck="false"> 
+            <label>ID Number or Email</label>
+          </div>
+
+          <!-- Password Input -->
+          <div class="input-field">
+            <input type="password" id="password" required spellcheck="false"> 
+            <label>Password</label>
+            <button type="button" class="password-toggle" id="password-toggle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.875rem; color:var(--color-text-secondary); margin-bottom:1.5rem;">
+             <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
+               <input type="checkbox" style="accent-color:var(--color-accent);"> Remember me
+             </label>
+             <a href="forgot-password.html" style="color:var(--color-accent); text-decoration:none;">Recovery</a>
+          </div>
+
+          <button type="submit" class="btn-submit">Sign In</button>
+          
+          <div style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem; color: var(--color-text-secondary);">
+            Don't have an account? <a href="registration/registration.html" style="color: var(--color-accent); text-decoration: none; font-weight: 500;">Register here</a>.
+          </div>
+        </form>
+
+        <div class="footer-nav">
+          <a href="admin-login.html">Admin</a>
+          <span style="color:var(--color-border);">|</span>
+          <a href="security-login.html">Security</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/dark-mode.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+      select.addEventListener('change', () => {
+        select.setAttribute('valid', select.value ? 'true' : 'false');
+      });
+    });
+  </script>
 </body>
 </html>
